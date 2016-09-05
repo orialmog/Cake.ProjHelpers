@@ -4,7 +4,7 @@
 
 var target          = Argument("target", "Default");
 var configuration   = Argument("configuration", "Release");
-var branchName      = "master"//GetGitBranch();
+var branchName      = "master";//GetGitBranch();
 
 Information("Branch is '{0}'", branchName);
 
