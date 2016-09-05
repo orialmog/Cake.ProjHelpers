@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Xml.Linq;
+using System.Diagnostics;
 
 namespace Cake.ProjHelpers
 {
@@ -21,6 +22,25 @@ namespace Cake.ProjHelpers
         /// Adds absolute/relative file paths into a .proj as embed resource with relative paths
         /// </summary>
         [CakeMethodAlias]
+        public static void AddEmbeddedResources(this ICakeContext context, Cake.Core.IO.FilePathCollection files, Cake.Core.IO.FilePath projectFile)
+        {
+            AddFilesToProjectAsEmbeddedResources(files.Select(f=> f.FullPath).ToArray(), projectFile.FullPath.ToString());
+        }
+
+
+        /// <summary>
+        /// Adds absolute/relative file paths into a .proj as embed resource with relative paths
+        /// </summary>
+        [CakeMethodAlias]
+        public static void AddEmbeddedResources(this ICakeContext context, Cake.Core.IO.FilePathCollection files, string projectFile)
+        {
+            AddFilesToProjectAsEmbeddedResources(files.Select(f => f.FullPath).ToArray(), projectFile);
+        }
+
+        /// <summary>
+        /// Adds absolute/relative file paths into a .proj as embed resource with relative paths
+        /// </summary>
+        [CakeMethodAlias]
         public static void AddEmbeddedResources(this ICakeContext context, string[] files, string projectFile)
         {
             AddFilesToProjectAsEmbeddedResources(files, projectFile);
@@ -30,19 +50,18 @@ namespace Cake.ProjHelpers
         /// Adds absolute/relative file paths into a .proj as embed resource with relative paths
         /// </summary>
         public static void AddFilesToProjectAsEmbeddedResources(string[] files, string projectFilePath)
-        {
-
+        {  
             var ProjectFile = XDocument.Load(projectFilePath);
 
             var itemGroup = GetLastItemGroup(ProjectFile);
-
+             
             foreach (var file in files)
             {
                 //Add the resources from the files specified.
 
-                var relativePath = System.IO.Path.IsPathRooted(file) ? 
-                    GetRelativePath(file, System.IO.Path.GetDirectoryName(projectFilePath)) : 
-                    file;
+                var relativePath = new Cake.Core.IO.FilePath(System.IO.Path.GetFullPath(projectFilePath))
+                    .GetRelativePath(new Core.IO.FilePath(System.IO.Path.GetFullPath(file)))
+                    .ToString().Replace('/', Path.DirectorySeparatorChar);
 
                 if (!EmbeddedResourceExists(relativePath, ProjectFile))
                 {
@@ -97,19 +116,7 @@ namespace Cake.ProjHelpers
 
             return existingRef != null;
         }
-
-        private static string GetRelativePath(string filespec, string folder)
-        {
-            Uri pathUri = new Uri(filespec);
-            // Folders must end in a slash
-            if (!folder.EndsWith(Path.DirectorySeparatorChar.ToString()))
-            {
-                folder += Path.DirectorySeparatorChar;
-            }
-            Uri folderUri = new Uri(folder);
-            return Uri.UnescapeDataString(folderUri.MakeRelativeUri(pathUri).ToString().Replace('/', Path.DirectorySeparatorChar));
-        }
-
+        
 
 
     }

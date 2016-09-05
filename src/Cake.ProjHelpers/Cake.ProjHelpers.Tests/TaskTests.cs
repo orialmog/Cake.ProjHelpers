@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.IO;
 using Cake.ProjEmbedResources.Tests.Resources;
+using ProjHelper = Cake.ProjHelpers.ProjHelpers;
 
 namespace Cake.ProjEmbedResources.Tests
 {
@@ -26,7 +27,7 @@ namespace Cake.ProjEmbedResources.Tests
         [TestMethod]
         public void CanWriteFilesToXml()
         {
-            ProjEmbedResources.AddFilesToProject(Directory.GetFiles(@"Resources\to_embed\",@"*.*", SearchOption.AllDirectories), @".\Sample.proj");
+            ProjHelper.AddFilesToProjectAsEmbeddedResources(Directory.GetFiles(@"Resources\to_embed\",@"*.*", SearchOption.AllDirectories), @".\Sample.proj");
 
             Assert.AreEqual(File.ReadAllText(@".\Sample.proj"), StringResources.PopulatedCSConsoleProject)
 ;
@@ -34,9 +35,9 @@ namespace Cake.ProjEmbedResources.Tests
         [TestMethod]
         public void ReRunDoesNotWriteExtraFilesToXml()
         {
-            ProjEmbedResources.AddFilesToProject(Directory.GetFiles(@"Resources\to_embed\", @"*.*", SearchOption.AllDirectories), @".\Sample.proj");
-            ProjEmbedResources.AddFilesToProject(Directory.GetFiles(@"Resources\to_embed\", @"*.*", SearchOption.AllDirectories), @".\Sample.proj");
-            ProjEmbedResources.AddFilesToProject(Directory.GetFiles(@"Resources\to_embed\", @"*.*", SearchOption.AllDirectories), @".\Sample.proj");
+            ProjHelper.AddFilesToProjectAsEmbeddedResources(Directory.GetFiles(@"Resources\to_embed\", @"*.*", SearchOption.AllDirectories), @".\Sample.proj");
+            ProjHelper.AddFilesToProjectAsEmbeddedResources(Directory.GetFiles(@"Resources\to_embed\", @"*.*", SearchOption.AllDirectories), @".\Sample.proj");
+            ProjHelper.AddFilesToProjectAsEmbeddedResources(Directory.GetFiles(@"Resources\to_embed\", @"*.*", SearchOption.AllDirectories), @".\Sample.proj");
               
             Assert.AreEqual(File.ReadAllText(@".\Sample.proj"), StringResources.PopulatedCSConsoleProject);
         }
@@ -45,12 +46,12 @@ namespace Cake.ProjEmbedResources.Tests
         [TestMethod]
         public void MovingFilesDoesNotWriteExtraFilesToXml()
         {
-            ProjEmbedResources.AddFilesToProject(Directory.GetFiles(@"Resources\to_embed\", @"*.*", SearchOption.AllDirectories), @".\Sample.proj");
+            ProjHelper.AddFilesToProjectAsEmbeddedResources(Directory.GetFiles(@"Resources\to_embed\", @"*.*", SearchOption.AllDirectories), @".\Sample.proj");
 
             File.Move(@"Resources\to_embed\stuff_one.js", @"Resources\to_embed\sub\stuff_one.js");
             File.Delete(@"Resources\to_embed\stuff_one.js");
 
-            ProjEmbedResources.AddFilesToProject(Directory.GetFiles(@"Resources\to_embed\", @"*.*", SearchOption.AllDirectories), @".\Sample.proj");
+            ProjHelper.AddFilesToProjectAsEmbeddedResources(Directory.GetFiles(@"Resources\to_embed\", @"*.*", SearchOption.AllDirectories), @".\Sample.proj");
               
             Assert.AreEqual(File.ReadAllText(@".\Sample.proj"), StringResources.MovedFileCSConsoleProject);
 

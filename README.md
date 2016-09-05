@@ -7,9 +7,6 @@ Default options
 In this example, the default options are used to add all files using Directory.GetFiles as embedded resource. 
 The directory structure used is described below.
 
-```sh
-AddEmbeddedResources(Directory.GetFiles(@"./to_embed/", @"\*.*", SearchOption.AllDirectories), @"./MyProject.csproj");
-```
         +-- MyProject.csproj
         +-- to_embed
             ¦   +-- rootpage.html
@@ -27,4 +24,21 @@ AddEmbeddedResources(Directory.GetFiles(@"./to_embed/", @"\*.*", SearchOption.Al
  Embeds files into a .vbproj or .csproj file as embedded resource.
 
 
+
+#### Example Task
+ 
+```sh
+Task("Embed-FrontEnd-Files")
+    .Does(() =>
+{
+    var prjRoot = @"./src/";
+    
+    var files = GetFiles(prjRoot + @"to_embed/**/*");
+
+    AddEmbeddedResources(files,
+       new FilePath(prjRoot + "ServiceHost.csproj")
+    );
+
+});
+```
 

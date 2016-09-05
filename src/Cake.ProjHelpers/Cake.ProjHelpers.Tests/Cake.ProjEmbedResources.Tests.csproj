@@ -82,7 +82,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Cake.ProjEmbedResources\Cake.ProjEmbedResources.csproj">
+    <ProjectReference Include="..\Cake.ProjHelpers\Cake.ProjHelpers.csproj">
       <Project>{a6d74f2f-8d7c-483e-a84f-d47bcb48e954}</Project>
       <Name>Cake.ProjEmbedResources</Name>
     </ProjectReference>
