@@ -11,7 +11,7 @@ using System.Diagnostics;
 namespace Cake.ProjHelpers
 {
 
-
+   
     /// <summary>
     /// Helpers to ease manipulation of vs proj files. 
     /// </summary>
