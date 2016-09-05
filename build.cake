@@ -4,15 +4,13 @@
 
 var target          = Argument("target", "Default");
 var configuration   = Argument("configuration", "Release");
-var branchName      = "master";//GetGitBranch();
+var branchName      = "master";
 
 Information("Branch is '{0}'", branchName);
 
 ///////////////////////////////////////////////////////////////////////////////
 // GLOBAL VARIABLES
 ///////////////////////////////////////////////////////////////////////////////
-
-EnsureCakeVersionInReleaseNotes(branchName);
 
 var isLocalBuild        = !AppVeyor.IsRunningOnAppVeyor;
 var isPullRequest       = AppVeyor.Environment.PullRequest.IsPullRequest;
@@ -23,7 +21,7 @@ var version             = releaseNotes.Version.ToString();
 var binDir              = "./src/Cake.ProjHelpers/Cake.ProjHelpers/bin/" + configuration;
 var nugetRoot           = "./nuget/";
 var isMasterBranch      = branchName == "master";
-var semVersion = isLocalBuild || isMasterBranch ? version : (version + string.Concat("-pre-", AppVeyor.Environment.Build.Number));
+var semVersion = "0.0.2";
 
 var assemblyInfo        = new AssemblyInfoSettings {
                                 Title                   = "Cake.ProjHelpers",
@@ -187,125 +185,4 @@ Task("AppVeyor")
 
 RunTarget(target);
 
-    private void EnsureCakeVersionInReleaseNotes(string branchName)
-    {
-        if (branchName.StartsWith("Detached"))
-        {
-            return;
-        }
-
-        bool updated = false;
-        List<string> lines = null;
-        const string fileName = "ReleaseNotes.md";
-        var releaseNotes = ParseReleaseNotes(fileName);
-        var cakeVersion = System.Diagnostics.FileVersionInfo.GetVersionInfo(@"tools\Cake\Cake.exe").FileVersion;
-        string cakeVersionNote = "Built against Cake v"; ;
-        var note = releaseNotes.Notes.FirstOrDefault(n => n.StartsWith(cakeVersionNote));
-        if (note == null)
-        {
-            // No cake version mentioned, add it
-            lines = System.IO.File.ReadAllLines(fileName).ToList();
-            int lineIndex = -1;
-            do
-            {
-              lineIndex++;
-            } while (lines[lineIndex].Trim() == String.Empty);
-            lines.Insert(lineIndex + 1, "* " + cakeVersionNote + cakeVersion);
-            updated = true;
-        }
-        else if (!note.EndsWith(cakeVersion))
-        {
-            // Already released against an older version of Cake, add new release notes
-            Version version = releaseNotes.Version;
-            version = new Version(version.Major, version.Minor, version.Build + 1);
-            lines = System.IO.File.ReadAllLines(fileName).ToList();
-            lines.Insert(0, "");
-            lines.Insert(0, "* " + cakeVersionNote + cakeVersion);
-            lines.Insert(0, String.Format("### New in {0} (Released {1})", version.ToString(3), DateTime.Today.ToString("yyyy/MM/dd")));
-            updated = true;
-        }
-
-        if (updated)
-        {
-            Information("Updating release notes");
-            System.IO.File.WriteAllLines(fileName, lines);
-            RunGit("config --global credential.helper store");
-            RunGit("config --global user.email \"almog.ori@gmail.com\"");
-            RunGit("config --global user.name \"Ori Almog\"");
-            RunGit("config --global push.default simple");
-            if (AppVeyor.IsRunningOnAppVeyor)
-            {
-                string token = EnvironmentVariable("gittoken");
-                if (string.IsNullOrEmpty(token))
-                {
-                    throw new Exception("gittoken variable not found");
-                }
-                
-                string auth = string.Format("https://{0}:x-oauth-basic@github.com\n", token);
-                string credentialsStore = System.Environment.ExpandEnvironmentVariables(@"%USERPROFILE%\.git-credentials");
-                //Information("Writing {0} to {1}", auth, credentialsStore);
-                System.IO.File.AppendAllText(credentialsStore, auth);
-                //Information("{0} now contains:\n{1}", credentialsStore, System.IO.File.ReadAllText(credentialsStore));
-            }
-
-            RunGit("add " + fileName);
-            RunGit("commit -m\"Update release notes\"");
-            RunGit("push");
-        }
-        else
-        {
-           Information("Release notes up to date");
-        }
-    }
-
-    private IEnumerable<string> RunGit(string arguments, bool logOutput = true)
-    {
-        IEnumerable<string> output;
-        var exitCode = StartProcess("git", new ProcessSettings
-        {
-          Arguments = arguments, 
-          Timeout = (int)TimeSpan.FromMinutes(1).TotalMilliseconds,
-          RedirectStandardOutput = true
-        }, out output);
-
-        output = output.ToList();
-        if (logOutput)
-        {
-            foreach (var line in output)
-            {
-                Information(line);
-            }
-        }
-
-        if (exitCode != 0)
-        {
-            Information("Git returned {0}", exitCode);
-            throw new Exception("Git Error");
-        }
-        
-        return output;
-    }
-
-    private string GetGitBranch()
-    {
-        IEnumerable<string> output = RunGit("status", false);
-        string line = output.FirstOrDefault(s => s.Trim().StartsWith("On branch"));
-        if (line == null)
-        {
-            line = output.FirstOrDefault(s => s.Trim().StartsWith("HEAD detached "));
-            if (line == null)
-            {
-                Information("Unable to determine Git Branch" );
-                foreach (var oline in output)
-                {
-                    Information(oline);
-                }
-
-                throw new Exception("Unable to determine Git Branch");
-            }
-
-             return "Detached " + line.Replace("HEAD detached", string.Empty).Trim();
-        }
-
-        return line.Replace("On branch", string.Empty).Trim();
-    }
+ 
