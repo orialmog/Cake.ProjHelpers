@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
         <id>Cake.ProjHelpers.dll</id>
-        <version>1.0.0</version>
+        <version>1.0.1</version>
         <authors>Ori Almog</authors>
         <owners>Ori Almog</owners>
         <licenseUrl>https://github.com/orialmog/Cake.ProjHelpers/blob/master/LICENSE</licenseUrl>
@@ -12,7 +12,7 @@
         <description>Cake AddIn for manipulating .proj files</description>
         <releaseNotes>Summary of changes made in this release of the package.</releaseNotes>
         <copyright>Copyright 2016</copyright>
-        <tags>Cake, Script, Build, Resources, Embed, Task, Content</tags>        
+        <tags>Cake, Script, Build, Resources, Embed, Task, Content</tags>
     </metadata>
     <files>
         <file src="..\src\Cake.ProjHelpers\Cake.ProjHelpers\bin\Debug\Cake.ProjHelpers.dll" target="Cake.ProjHelpers.dll" />
