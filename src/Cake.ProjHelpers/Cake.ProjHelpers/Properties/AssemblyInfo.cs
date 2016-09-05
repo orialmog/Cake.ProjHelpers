@@ -10,9 +10,9 @@ using System;
 [assembly: AssemblyDescription("Cake AddIn to embed files into .proj files")]
 [assembly: AssemblyCompany("Ori Almog")]
 [assembly: AssemblyProduct("Cake.ProjHelpers")]
-[assembly: AssemblyVersion("0.0.1")]
-[assembly: AssemblyFileVersion("0.0.1")]
-[assembly: AssemblyInformationalVersion("0.0.1")]
+[assembly: AssemblyVersion("0.0.2")]
+[assembly: AssemblyFileVersion("0.0.2")]
+[assembly: AssemblyInformationalVersion("0.0.2")]
 [assembly: AssemblyCopyright("Copyright © Ori Almog 2016")]
 [assembly: CLSCompliant(true)]
 

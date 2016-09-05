@@ -16,12 +16,12 @@ var isLocalBuild        = !AppVeyor.IsRunningOnAppVeyor;
 var isPullRequest       = AppVeyor.Environment.PullRequest.IsPullRequest;
 var solutions           = GetFiles("./**/*.sln");
 var solutionDirs        = solutions.Select(solution => solution.GetDirectory());
-var releaseNotes        = ParseReleaseNotes("./ReleaseNotes.md");
-var version             = releaseNotes.Version.ToString();
+var releaseNotes        = "";
+var semVersion = "0.0.2";
+var version             = semVersion;
 var binDir              = "./src/Cake.ProjHelpers/Cake.ProjHelpers/bin/" + configuration;
 var nugetRoot           = "./nuget/";
 var isMasterBranch      = branchName == "master";
-var semVersion = "0.0.2";
 
 var assemblyInfo        = new AssemblyInfoSettings {
                                 Title                   = "Cake.ProjHelpers",
@@ -50,7 +50,6 @@ var nuGetPackSettings   = new NuGetPackSettings {
                                 IconUrl                 = new Uri("https://raw.githubusercontent.com/cake-build/graphics/master/png/cake-medium.png"),
                                 LicenseUrl              = new Uri("https://github.com/orialmog/Cake.ProjHelpers/blob/master/LICENSE"),
                                 Copyright               = assemblyInfo.Copyright,
-                                ReleaseNotes            = releaseNotes.Notes.ToArray(),
                                 Tags                    = new [] {"Cake", "Script", "Build", "Resources", "Embed", "Task"},
                                 RequireLicenseAcceptance= false,        
                                 Symbols                 = false,
@@ -89,10 +88,15 @@ Teardown(() =>
 Task("Clean")
     .Does(() =>
 {
+    
+    Information("Cleaning {0}", nugetRoot);
+    CleanDirectories(new DirectoryPath(nugetRoot).FullPath); 
+       
     // Clean solution directories.
     foreach(var solutionDir in solutionDirs)
     {
         Information("Cleaning {0}", solutionDir);
+
         CleanDirectories(solutionDir + "/**/bin/" + configuration);
         CleanDirectories(solutionDir + "/**/obj/" + configuration);
     }
