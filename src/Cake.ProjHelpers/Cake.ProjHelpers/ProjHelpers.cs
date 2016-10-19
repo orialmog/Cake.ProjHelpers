@@ -21,6 +21,9 @@ namespace Cake.ProjHelpers
         /// <summary>
         /// Adds absolute/relative file paths into a .proj as embed resource with relative paths
         /// </summary>
+        /// <param name="files">Cake.Core.IO.FilePathCollection of file paths to add</param>
+        /// <param name="projectFile">Cake.Core.IO.FilePath to the VS project file to modify</param>
+        /// <returns>Nothing.</returns>
         [CakeMethodAlias]
         public static void AddEmbeddedResources(this ICakeContext context, Cake.Core.IO.FilePathCollection files, Cake.Core.IO.FilePath projectFile)
         {
@@ -31,6 +34,9 @@ namespace Cake.ProjHelpers
         /// <summary>
         /// Adds absolute/relative file paths into a .proj as embed resource with relative paths
         /// </summary>
+        /// <param name="files">Cake.Core.IO.FilePathCollection of file paths to add</param>
+        /// <param name="projectFile">String path to VS project file to modify</param>
+        /// <returns>Nothing.</returns>
         [CakeMethodAlias]
         public static void AddEmbeddedResources(this ICakeContext context, Cake.Core.IO.FilePathCollection files, string projectFile)
         {
@@ -38,8 +44,12 @@ namespace Cake.ProjHelpers
         }
 
         /// <summary>
-        /// Adds absolute/relative file paths into a .proj as embed resource with relative paths
-        /// </summary>
+        /// Assuming files in project folder, adds absolute/relative file paths into a .proj file
+        /// as embed resource (with relative paths to the project file)
+        /// </summary> 
+        /// <param name="files">String array of file paths to add</param>
+        /// <param name="projectFile">String path to VS project file to modify</param>
+        /// <returns>Nothing.</returns>
         [CakeMethodAlias]
         public static void AddEmbeddedResources(this ICakeContext context, string[] files, string projectFile)
         {
@@ -47,8 +57,15 @@ namespace Cake.ProjHelpers
         }
 
         /// <summary>
-        /// Adds absolute/relative file paths into a .proj as embed resource with relative paths
-        /// </summary>
+        ///Loads the project file and finds the last item group in its contents
+        ///Then checks each file in the array for an existing entry in the project file
+        ///Assuming a matched file name
+        ///If the entry exists in the project file but not on disk the reference is removed
+        ///a new entry is added to the item group
+        /// </summary> 
+        /// <param name="files">String array of file paths to add</param>
+        /// <param name="projectFilePath">String path to VS project file to modify</param>
+        /// <returns>Nothing.</returns>
         public static void AddFilesToProjectAsEmbeddedResources(string[] files, string projectFilePath)
         {  
             var ProjectFile = XDocument.Load(projectFilePath);
@@ -57,8 +74,7 @@ namespace Cake.ProjHelpers
              
             foreach (var file in files)
             {
-                //Add the resources from the files specified.
-
+                //Make a path relative from the file specified. 
                 var relativePath = new Cake.Core.IO.FilePath(System.IO.Path.GetFullPath(projectFilePath))
                     .GetRelativePath(new Core.IO.FilePath(System.IO.Path.GetFullPath(file)))
                     .ToString().Replace('/', Path.DirectorySeparatorChar);

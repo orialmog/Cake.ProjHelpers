@@ -7,7 +7,7 @@ using System.Reflection;
 using System;
 
 [assembly: AssemblyTitle("Cake.ProjHelpers")]
-[assembly: AssemblyDescription("Cake AddIn to embed files into .proj files")]
+[assembly: AssemblyDescription("Helpers to ease manipulation of vs proj files.")]
 [assembly: AssemblyCompany("Ori Almog")]
 [assembly: AssemblyProduct("Cake.ProjHelpers")]
 [assembly: AssemblyVersion("0.0.2")]

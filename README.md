@@ -20,10 +20,11 @@ The directory structure used is described below.
         <EmbeddedResource Include="to_embed\resources\page1.html"/>
       </ItemGroup>
 
- NOTE: When the files are already found in the project as EmbeddedResources a new entry wont be added.
- Embeds files into a .vbproj or .csproj file as embedded resource.
-
-
+ NOTE:  Loads the project file and finds the last item group in its contents
+        Then checks each file in the array for an existing entry in the project file
+        Assuming a matched file name
+		If the entry exists in the project file but not on disk the reference is removed
+		a new entry is added to the item group
 
 #### Example Task
  
