@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Cake.ProjEmbedResources.Tests.Resources {
+namespace Cake.ProjHelpers.Tests.Resources {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Cake.ProjEmbedResources.Tests.Resources {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Cake.ProjEmbedResources.Tests.Resources.StringResources", typeof(StringResources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Cake.ProjHelpers.Tests.Resources.StringResources", typeof(StringResources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

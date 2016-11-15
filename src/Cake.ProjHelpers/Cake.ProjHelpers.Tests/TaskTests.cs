@@ -1,10 +1,10 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.IO;
-using Cake.ProjEmbedResources.Tests.Resources;
 using ProjHelper = Cake.ProjHelpers.ProjHelpers;
+using Cake.ProjHelpers.Tests.Resources;
 
-namespace Cake.ProjEmbedResources.Tests
+namespace Cake.ProjHelpers.Tests
 {
     [TestClass]
     public class TaskTests
