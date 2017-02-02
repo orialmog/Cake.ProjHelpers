@@ -17,7 +17,7 @@ var isPullRequest       = AppVeyor.Environment.PullRequest.IsPullRequest;
 var solutions           = GetFiles("./**/*.sln");
 var solutionDirs        = solutions.Select(solution => solution.GetDirectory());
 var releaseNotes        = "";
-var semVersion = "0.0.2.002";
+var semVersion = "0.0.2.003";
 var version             = semVersion;
 var binDir              = "./src/Cake.ProjHelpers/Cake.ProjHelpers/bin/" + configuration;
 var nugetRoot           = "./nuget/";
