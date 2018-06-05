@@ -110,6 +110,7 @@ Task("Build")
         Information("Building {0}", solution);
         MSBuild(solution, settings => 
             settings.UseToolVersion(MSBuildToolVersion.VS2017)
+                    .WithRestore()
                     .SetConfiguration(configuration));
     }
 });
