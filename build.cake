@@ -65,21 +65,6 @@ var nuGetPackSettings   = new NuGetPackSettings {
 var buildStartMessage = string.Format("Building version {0} of {1} ({2}).", version, assemblyInfo.Product, semVersion);
 Information(buildStartMessage);
 
-///////////////////////////////////////////////////////////////////////////////
-// SETUP / TEARDOWN
-///////////////////////////////////////////////////////////////////////////////
-
-Setup(() =>
-{
-    // Executed BEFORE the first task.
-    Information("Running tasks...");
-});
-
-Teardown(() =>
-{
-    // Executed AFTER the last task.
-    Information("Finished running tasks.");
-});
 
 ///////////////////////////////////////////////////////////////////////////////
 // TASK DEFINITIONS
