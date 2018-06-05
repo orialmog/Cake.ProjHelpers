@@ -2,7 +2,7 @@ version: 1.0.{build}
 
 environment:
   NUGET_API_KEY:
-    secure: l5S9A4g+rflxpDYJBXATu7ASZ2tGybD6s8B/UJ2btr5MWvmO9GzR8S2nE1WYpsB1 
+    secure: oy2kluu6fhnrfh6ljl5apm7432tf5bguvkxvjvkmt66nni 
   gittoken:
     secure: Bg3Y9d7e4plyjf8voA+du0CzL2bcmVUdVybYm9oU1S1d1M4YV3gK6k5mVDtoyKYN
     
