@@ -8,3 +8,6 @@ src/Cake.ProjHelpers/Cake.ProjHelpers.Tests/obj/
 /src/Cake.ProjHelpers/.vs/Cake.ProjHelpers/v14/.suo
 nuget/Cake.ProjHelpers.0.0.2/_rels/.rels
 *.xml
+/src/Cake.ProjHelpers/Cake.ProjectHelpers/bin/Debug/netstandard2.0
+/src/Cake.ProjHelpers/Cake.ProjectHelpers/obj
+/src/Cake.ProjHelpers/.vs/Cake.ProjHelpers/v15

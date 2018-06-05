@@ -2,20 +2,20 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
         <id>Cake.ProjHelpers.dll</id>
-        <version>0.0.2.2</version>
+        <version>0.0.3.0</version>
         <authors>Ori Almog</authors>
         <owners>Ori Almog</owners>
         <licenseUrl>https://github.com/orialmog/Cake.ProjHelpers/blob/master/LICENSE</licenseUrl>
         <projectUrl>https://github.com/orialmog/Cake.ProjHelpers</projectUrl>
-        <iconUrl>https://raw.githubusercontent.com/cake-build/graphics/master/png/cake-medium.png</iconUrl>
+        <iconUrl>https://cdn.rawgit.com/cake-contrib/graphics/a5cf0f881c390650144b2243ae551d5b9f836196/png/cake-contrib-medium.png</iconUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>Cake AddIn for manipulating .proj files</description>
         <releaseNotes>Summary of changes made in this release of the package.</releaseNotes>
-        <copyright>Copyright 2016</copyright>
+        <copyright>Copyright 2018</copyright>
         <tags>Cake, Script, Build, Resources, Embed, Task, Content</tags>
     </metadata>
     <files>
-        <file src="bin\Release\Cake.ProjHelpers.dll" target="Cake.ProjHelpers.dll" />
-    	<file src="bin\Release\Cake.ProjHelpers.XML" target="Cake.ProjHelpers.XML" />
+        <file src="bin\Release\netstandard2.0\Cake.ProjHelpers.dll" target="Cake.ProjHelpers.dll" />
+    	<file src="bin\Release\netstandard2.0\Cake.ProjHelpers.deps.json" target="Cake.ProjHelpers.deps.json" />
     </files>
 </package>

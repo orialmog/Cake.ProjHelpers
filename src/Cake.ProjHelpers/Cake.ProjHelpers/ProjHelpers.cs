@@ -1,12 +1,8 @@
 ﻿using Cake.Core;
 using Cake.Core.Annotations;
 using System.IO;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Xml.Linq;
-using System.Diagnostics;
 
 namespace Cake.ProjHelpers
 {

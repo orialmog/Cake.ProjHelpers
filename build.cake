@@ -38,7 +38,7 @@ var nuspecFiles = new []
 {
     new NuSpecContent {Source = "Cake.ProjHelpers.dll"},
     new NuSpecContent {Source = "Cake.ProjHelpers.xml"}
-};
+}; 
 var nuGetPackSettings   = new NuGetPackSettings {
                                 Id                      = assemblyInfo.Product,
                                 Version                 = assemblyInfo.InformationalVersion,
@@ -48,7 +48,7 @@ var nuGetPackSettings   = new NuGetPackSettings {
                                 Description             = assemblyInfo.Description,
                                 Summary                 = "Cake AddIn to embed files into .proj files", 
                                 ProjectUrl              = new Uri("https://github.com/orialmog/Cake.ProjHelpers"),
-                                IconUrl                 = new Uri("https://raw.githubusercontent.com/cake-build/graphics/master/png/cake-medium.png"),
+                                IconUrl                 = new Uri("https://cdn.rawgit.com/cake-contrib/graphics/a5cf0f881c390650144b2243ae551d5b9f836196/png/cake-contrib-medium.png"),
                                 LicenseUrl              = new Uri("https://github.com/orialmog/Cake.ProjHelpers/blob/master/LICENSE"),
                                 Copyright               = assemblyInfo.Copyright,
                                 Tags                    = new [] {"Cake", "Script", "Build", "Resources", "Embed", "Task"},
