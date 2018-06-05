@@ -5,7 +5,10 @@ environment:
     secure: l5S9A4g+rflxpDYJBXATu7ASZ2tGybD6s8B/UJ2btr5MWvmO9GzR8S2nE1WYpsB1 
   gittoken:
     secure: Bg3Y9d7e4plyjf8voA+du0CzL2bcmVUdVybYm9oU1S1d1M4YV3gK6k5mVDtoyKYN
-
+    
+before_build:
+- nuget restore
+  
 build_script:
 - ps: ./Build.ps1 -target "AppVeyor"
 artifacts:
