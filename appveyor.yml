@@ -6,11 +6,8 @@ environment:
   gittoken:
     secure: Bg3Y9d7e4plyjf8voA+du0CzL2bcmVUdVybYm9oU1S1d1M4YV3gK6k5mVDtoyKYN
     
-before_build:
-- nuget restore
-  
 build_script:
-- ps: ./Build.ps1 -target "AppVeyor"
+- cmd: PowerShell -Version 2.0 .\build.ps1 -target "AppVeyor"
 artifacts:
 - path: nuget\*.nupkg
   name: Nuget
