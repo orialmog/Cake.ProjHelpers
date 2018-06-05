@@ -36,7 +36,7 @@ var assemblyInfo        = new AssemblyInfoSettings {
 var nuspecFiles = new [] 
 {
     new NuSpecContent {Source = "Cake.ProjHelpers.dll"},
-    new NuSpecContent {Source = "Cake.ProjHelpers.xml"}
+    new NuSpecContent {Source = "Cake.ProjHelpers.deps.json"}
 }; 
 var nuGetPackSettings   = new NuGetPackSettings {
                                 Id                      = assemblyInfo.Product,
