@@ -16,8 +16,7 @@ var isLocalBuild        = !AppVeyor.IsRunningOnAppVeyor;
 var isPullRequest       = AppVeyor.Environment.PullRequest.IsPullRequest;
 var solutions           = GetFiles("./**/*.sln");
 var solutionDirs        = solutions.Select(solution => solution.GetDirectory());
-var releaseNotes        = "";
-var semVersion = "0.0.2.003";
+var semVersion          = "0.0.3.000";
 var version             = semVersion;
 var binDir              = "./src/Cake.ProjHelpers/Cake.ProjHelpers/bin/" + configuration;
 var nugetRoot           = "./nuget/";
@@ -114,19 +113,10 @@ Task("Restore")
     }
 });
 
-Task("AssemblyInfo")
-    .IsDependentOn("Clean")
-    .IsDependentOn("Restore")
-    .Does(() =>
-{
-    var file = "./src/Cake.ProjHelpers/Cake.ProjHelpers/Properties/AssemblyInfo.cs";
-    CreateAssemblyInfo(file, assemblyInfo);
-});
 
 Task("Build")
     .IsDependentOn("Clean")
     .IsDependentOn("Restore")
-    .IsDependentOn("AssemblyInfo")
     .Does(() =>
 {
     // Build all solutions.
