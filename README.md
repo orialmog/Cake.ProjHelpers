@@ -1,6 +1,7 @@
 
 # Cake VS Proj Helpers
 
+
 #### AddEmbeddedResources - Embeds files into a .vbproj or .csproj file as embedded resource.
 
 Default options
