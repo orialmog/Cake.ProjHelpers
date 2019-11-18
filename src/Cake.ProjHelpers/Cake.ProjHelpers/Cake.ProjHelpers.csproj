@@ -11,12 +11,12 @@
     <Copyright>Copyright © Ori Almog 2018</Copyright>
     <PackageLicenseUrl>https://github.com/orialmog/Cake.ProjHelpers/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/orialmog/Cake.ProjHelpers</PackageProjectUrl>
-    <PackageIconUrl>https://cdn.rawgit.com/cake-contrib/graphics/a5cf0f881c390650144b2243ae551d5b9f836196/png/cake-contrib-medium.png</PackageIconUrl>
+    <PackageIconUrl>https://cdn.jsdelivr.net/gh/cake-contrib/graphics/png/cake-contrib-medium.png</PackageIconUrl>
     <RepositoryUrl>https://github.com/orialmog/Cake.ProjHelpers</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Cake.Core" Version="0.28.0" />
+    <PackageReference Include="Cake.Core" Version="0.33.0" PrivateAssets="All" />
   </ItemGroup> 
   
 </Project>
