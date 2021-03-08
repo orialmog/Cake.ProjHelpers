@@ -109,7 +109,7 @@ Task("Build")
     {
         Information("Building {0}", solution);
         MSBuild(solution, settings => 
-            settings.UseToolVersion(MSBuildToolVersion.VS2017)
+            settings.UseToolVersion(MSBuildToolVersion.VS2019)
                     .WithRestore()
                     .SetConfiguration(configuration));
     }
