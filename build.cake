@@ -108,8 +108,7 @@ Task("Build")
     foreach(var solution in solutions)
     {
         Information("Building {0}", solution);
-        MSBuild(solution, settings => 
-            settings.UseToolVersion(MSBuildToolVersion.VS2019)
+        MSBuild(solution, settings =>  
                     .WithRestore()
                     .SetConfiguration(configuration));
     }
