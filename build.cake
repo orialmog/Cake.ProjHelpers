@@ -109,7 +109,7 @@ Task("Build")
     {
         Information("Building {0}", solution);
         MSBuild(solution, settings =>  
-                    .WithRestore()
+                    settings.WithRestore()
                     .SetConfiguration(configuration));
     }
 });
