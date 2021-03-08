@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
         <id>Cake.ProjHelpers.dll</id>
-        <version>0.0.3.0</version>
+        <version>0.0.4.0</version>
         <authors>Ori Almog</authors>
         <owners>Ori Almog</owners>
         <licenseUrl>https://github.com/orialmog/Cake.ProjHelpers/blob/master/LICENSE</licenseUrl>
