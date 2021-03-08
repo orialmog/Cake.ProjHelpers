@@ -3,7 +3,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 var target          = Argument("target", "Default");
-var configuration   = Argument("configuration", "Release/netstandard2.0");
+var configuration   = Argument("configuration", "Release");
 var branchName      = "master";
 
 Information("Branch is '{0}'", branchName);
