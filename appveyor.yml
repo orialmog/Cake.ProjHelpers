@@ -3,7 +3,7 @@ version: 1.0.{build}
 image: Visual Studio 2019
 environment:
   NUGET_API_KEY:    
-    secure: 8N/s0oktA/5MDvTOxt4ip3SUoT0CmR3+jd65YQQiFv6Js29eSobs1DSH26bZyNrO 
+    secure: PxbJvJOS8x18fhJIQ5J0D35EHBgdSRfOdhpp1r/2Nw9TJgFzdvC77sKTwptyaAkE 
   gittoken:
     secure: Bg3Y9d7e4plyjf8voA+du0CzL2bcmVUdVybYm9oU1S1d1M4YV3gK6k5mVDtoyKYN
 build_script:
