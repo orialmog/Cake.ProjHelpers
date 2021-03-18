@@ -7,7 +7,7 @@ environment:
     secure: Bg3Y9d7e4plyjf8voA+du0CzL2bcmVUdVybYm9oU1S1d1M4YV3gK6k5mVDtoyKYN
     
 build_script:
-- cmd: PowerShell -Version 2.0 .\build.ps1 -target "AppVeyor"
+- cmd: PowerShell .\build.ps1 -target "AppVeyor"
 artifacts:
 - path: nuget\*.nupkg
   name: Nuget
