@@ -109,7 +109,9 @@ Task("Build")
     {
         Information("Building {0}", solution);
         MSBuild(solution, settings =>  
-                    settings.SetConfiguration(configuration));
+                    settings
+                    .UseToolVersion(MSBuildToolVersion.VS2019)
+                    .SetConfiguration(configuration));
     }
 });
 
