@@ -1,13 +1,13 @@
-version: 1.0.{build}
+version: 1.0.{build} 
 
+image: Visual Studio 2019
 environment:
   NUGET_API_KEY:    
     secure: rZ1RILaaRH5moWWi0JXchZZxmI1jCgIk4lPf6Xv9H5a3UZdg6olSB/GdPuyK71mt
   gittoken:
     secure: Bg3Y9d7e4plyjf8voA+du0CzL2bcmVUdVybYm9oU1S1d1M4YV3gK6k5mVDtoyKYN
-    
 build_script:
-- cmd: PowerShell .\build.ps1 -target "AppVeyor"
+- ps: .\build.ps1 -target "AppVeyor"
 artifacts:
 - path: nuget\*.nupkg
-  name: Nuget
+  name: Nuget 
